@@ -15,13 +15,13 @@ const CheckoutForm = () => {
         });
 
         if (!error) {
+            console.log("YAY");
             // Call backend to create subscription with paymentMethod.id
             // I dont really understand
             console.log('Payment method:', paymentMethod.id);
         } else {
             console.log("Error happened");
         }
-        setLoading(false);
     };
 
     return (
