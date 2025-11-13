@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { GetTeams } from './fetch-team';
-import { createTeam } from '../create-team/create-team';
+import { GetTeams } from './fetch-team/fetch-team';
+import { createTeam } from './fetch-team/create-team';
 import { useRouter } from 'next/navigation';
 
 export default function TeamList() {
@@ -10,10 +10,11 @@ export default function TeamList() {
     const [teams, setTeams] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [team_members, setTeamMembers] = useState<any[]>([]);
+    const [team_name, setTeamName] = useState("Unnamed Team");
 
     const handleCreateTeam = async () => {
         try {
-            const team = await createTeam("New Team");
+            const team = await createTeam(team_name);
             const data = await GetTeams();
             setTeams(data || [])
             console.log("Created team:", team);
@@ -45,7 +46,13 @@ export default function TeamList() {
 
     return (
         <div>
-        <button onClick={handleCreateTeam}>Create New Team</button>
+            <input
+                onChange={(e) => setTeamName(e.target.value)}
+                placeholder="Enter Team Name"
+            ></input>
+            <li></li>
+        <button className="bg-green-500 px-4 py-2 rounded"
+            onClick={()=>handleCreateTeam()}>Create New Team</button>
         <h2>Your Teams:</h2>
         {teams.length === 0 ? (
             <p>You don’t own any teams yet.</p>

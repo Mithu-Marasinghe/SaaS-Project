@@ -18,6 +18,7 @@ export async function createTeam(name: String) {
 
     await supabase.from('team_members').insert({
         team_id: data.id,
+        user_email: user?.email,
         user_id: user?.id,
         role: 'owner',
     });
