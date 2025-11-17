@@ -8,6 +8,8 @@ import getTaskList from '../fetch-team/fetch_task-list';
 import addTask from './add_task';
 import removeTask from '../fetch-team/remove_task';
 import markTask from '../fetch-team/mark-task';
+import GetUser from '../fetch-team/get-user';
+import { User } from '@supabase/supabase-js';
 
 
 
@@ -21,6 +23,7 @@ export default function TeamPage() {
     const [taskList, setTaskList] = useState<any[]>([]);
     const [taskName, setTaskName] = useState("New Task");
     const [loading, setLoading] = useState(true);
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
 
 
 
@@ -75,6 +78,8 @@ export default function TeamPage() {
 
     const fetchData = async () => {
         try {
+            const currentUser = await GetUser();
+            setCurrentUser(currentUser);
             await fetchMembers();
             await fetchTeamInfo();
             await fetchTaskInfo();
@@ -93,11 +98,12 @@ export default function TeamPage() {
         <div>   
             <p className='text-xl font-bold'>{teamInfo?.name}</p> <br/>
             <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={() => handleInviteClick()}>Invite Members</button>
-            {inviteLink && (
+            {inviteLink && (currentUser?.id == teamInfo.owner_id) && (
+            /*CHECK FOR USER*/
             <p>
                 Invite link: <a href={inviteLink} target="_blank"><li className='text-blue-500'>{process.env.NEXT_PUBLIC_BASE_URL + inviteLink}</li></a>
-            </p>
-            )}
+            </p>)}
+            {inviteLink && (currentUser?.id != teamInfo.owner_id) && <p>You do not have permission!</p>}
             <li></li>
             <li>
             <input 
