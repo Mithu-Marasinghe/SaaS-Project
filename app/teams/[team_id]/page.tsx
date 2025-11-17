@@ -62,7 +62,7 @@ export default function TeamPage() {
         )}
         <p>Team Members: </p>
         {team_members.map(member=> (
-            <li key={member.user_id}>{member.user_email}</li>
+            <li key={member.user_id}>{member.user_email} ({member.role})</li>
         ))}
         </div>
     );
