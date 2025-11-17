@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
-export default function invitePage() {
+export default function InvitePageClient() {
     const searchParams = useSearchParams();
     const token = searchParams.get('token');
     const supabase = createClient();

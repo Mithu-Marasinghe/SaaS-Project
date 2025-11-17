@@ -1,10 +1,16 @@
+'use client'
+
 import { Suspense } from "react";
-import invitePage from "./invite-client";
+import InvitePageClient from "./invite-client";
+import { useRouter } from "next/navigation";
 
 export default function InvitePage() {
+    const router = useRouter();
+
     return (
         <Suspense fallback={<p>Loading...</p>}>
-            <InvitePage />
+            <InvitePageClient />
+            <button className="regButton" onClick={() => router.push('/teams')}>Return</button>
         </Suspense>
     )
 }

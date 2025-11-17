@@ -1,17 +1,18 @@
 
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
-const supabase = createClient();
-
 export async function POST(request: Request) {
+    const supabase =  await createClient();
     const {teamId}  = await request.json()
 
     const token = crypto.randomUUID();
 
-    const {error} = await supabase
-        .from('team_invitations')
-        .insert([{ team_id: teamId, token}]);
+    // const {error} = await supabase
+    //     .from('team_invitations')
+    //     .insert([{ team_id: teamId, token}]);
+
+    const {error} = await supabase.from('team_invitations').insert([{ team_id: teamId, token}])
 
     if (error) {
         console.error(error);

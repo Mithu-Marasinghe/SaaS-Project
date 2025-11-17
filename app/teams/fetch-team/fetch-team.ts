@@ -6,8 +6,11 @@ export async function GetTeams() {
 
     if (!user) throw new Error("User not logged in");
 
-    const {data, error} = await supabase.from('teams').select('*').eq('owner_id', user.id);
+    const {data, error} = await supabase
+        .from('team_members')
+        .select('teams(*)')
+        .eq('user_id', user.id);
 
-    console.log("Teams owned by user:", data);
+    console.log("User is in these teams:", data);
     return data
 }

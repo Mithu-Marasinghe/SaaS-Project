@@ -55,6 +55,24 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    .regButton {
+      background-color: blue;
+      text: white;
+      font-size: 40px;
+    }
+
+    .deleteButton {
+      color: rgb(228, 49, 21);
+      font-size: 20px;
+    }
+
+    .completeButton {
+      color: rgb(79, 226, 16);
+      font-size: 20px;
+    }
+    
+
   }
 }
 
@@ -66,3 +84,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+

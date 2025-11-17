@@ -59,10 +59,11 @@ export default function TeamList() {
         ) : (
             <ul>
             {teams.map(team => (
-                <li key={team.id} className="mb-2">
+                <li key={team.teams.id} className="mb-2">
                     <button className="px-4 py-2 bg-blue-500 text-white rounded" 
-                    onClick={() => routeToTeam(team.id)}>
-                        {team.name}
+                    onClick={() => routeToTeam(team.teams.id)}>
+                        {team.teams.name}
+                        {console.log(team.teams.id)}
                     </button>
                 </li>
             ))}
