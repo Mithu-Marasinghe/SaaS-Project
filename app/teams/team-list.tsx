@@ -46,29 +46,31 @@ export default function TeamList() {
 
     return (
         <div>
-            <input
+            <button className="bg-cyan-500 px-4 py-2 rounded" onClick={() => router.push('/')}>Home</button> 
+            <li></li>
+            <input className='rounded'
                 onChange={(e) => setTeamName(e.target.value)}
                 placeholder="Enter Team Name"
-            ></input>
-            <li></li>
-        <button className="bg-green-500 px-4 py-2 rounded"
-            onClick={()=>handleCreateTeam()}>Create New Team</button>
-        <h2>Your Teams:</h2>
-        {teams.length === 0 ? (
-            <p>You don’t own any teams yet.</p>
-        ) : (
-            <ul>
-            {teams.map(team => (
-                <li key={team.teams.id} className="mb-2">
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded" 
-                    onClick={() => routeToTeam(team.teams.id)}>
-                        {team.teams.name}
-                        {console.log(team.teams.id)}
-                    </button>
-                </li>
-            ))}
-            </ul>
-        )}
+            ></input> <br />
+            <button className="bg-green-500 px-4 py-2 rounded"
+                onClick={()=>handleCreateTeam()}>Create New Team</button>
+            <li />
+            <h2>Your Teams:</h2>
+            {teams.length === 0 ? (
+                <p>You don’t own any teams yet.</p>
+            ) : (
+                <ul>
+                {teams.map(team => (
+                    <li key={team.teams.id} className="mb-2">
+                        <button className="px-4 py-2 bg-blue-500 text-white rounded" 
+                        onClick={() => routeToTeam(team.teams.id)}>
+                            {team.teams.name}
+                            {console.log(team.teams.id)}
+                        </button>
+                    </li>
+                ))}
+                </ul>
+            )}
         </div>
     );
 }

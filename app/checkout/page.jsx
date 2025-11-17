@@ -5,6 +5,9 @@ import stripePromise from '../../lib/stripe';
 import CheckoutForm from './checkoutForm'
 
 export default function CheckoutPage() {
+
+    return <p>Not Implemented Yet</p>
+
     return (
         <div style={{ maxWidth: 400, margin: '50px auto', textAlign: 'center' }}>
             <h1>Subscribe to a Plan</h1>
